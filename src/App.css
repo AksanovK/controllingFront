@@ -3,14 +3,9 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 33vmin;
+  width: 33vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -35,4 +30,486 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+
+#root > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter-Regular.ttf') format('woff'),
+  url('./assets/fonts/Inter-Regular.ttf') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter-Bold';
+  src: url('./assets/fonts/Inter-SemiBold.ttf') format('woff'),
+  url('./assets/fonts/Inter-SemiBold.ttf') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter-Extra-Bold';
+  src: url('./assets/fonts/Inter-ExtraBold.ttf') format('woff'),
+  url('./assets/fonts/Inter-ExtraBold.ttf') format('woff');
+}
+
+.loginContainer {
+  height: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  margin-top: 50px;
+  flex-grow: 1;
+}
+
+.loginContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginContainer .form-group {
+  text-align: left;
+}
+
+
+.loginContainer label {
+  display: inline;
+  color: #000;
+  font-size: 14px;
+  font-family: Inter, serif;
+}
+
+.loginContainer .form-control {
+  border: none;
+  box-shadow: none !important;
+  font-size: 18px;
+  background-color: #F7F7F7 !important;
+  font-family: Inter, serif;
+  width: 46vmin;
+}
+
+.loginContainer input, .loginContainer button {
+  margin: 10px 0;
+  text-align: left;
+}
+
+.loginContainer .btn-primary {
+  font-family: Inter, cursive;
+  font-weight: bold;
+  font-size: 24px;
+  background-color: transparent;
+  color: #000;
+  padding: 0;
+  border: none;
+}
+
+.loginContainer .btn-primary:hover {
+  font-family: Inter-Bold, serif;
+  background-color: transparent;
+  color: #555;
+  outline: none;
+  border: none;
+}
+
+.vectorLoginContainer {
+  flex-shrink: 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  height: 5vmin;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-menu-left,
+.nav-menu-center,
+.nav-menu-right {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu-left li,
+.nav-menu-center li,
+.nav-menu-right li {
+  margin: 0 20px;
+}
+
+.nav-menu-left li:last-child,
+.nav-menu-center li:last-child,
+.nav-menu-right li:last-child {
+  margin-right: 0;
+}
+
+.nav-menu-left li a,
+.nav-menu-center li a,
+.nav-menu-right li a {
+  text-decoration: none;
+  color: #262626;
+}
+
+.logo {
+  height: 4.5vmin;
+  margin: 1vmin;
+}
+
+.mailerBackground {
+  background-image: url('./assets/mailerVectorbig.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top 8vmin;
+}
+
+.vectorPosition {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  align-content: center;
+}
+
+.startButton {
+  width: 20vw;
+  height: 60px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-left: 2%;
+  margin-top: 2vmin;
+  background-color: black;
+  border: none;
+  color: white;
+  font-family: 'Inter-Extra-Bold', serif;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease; /* Анимация фона, тени и трансформации */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.startButton:hover {
+  background-color: #222;
+}
+
+.startButton:active {
+  background-color: #444;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}
+
+.mailerTitle {
+  font-family: 'Inter-Extra-Bold', serif;
+  font-size: 52px;
+  color: white;
+  margin-right: 15vmin;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.p {
+  font-family: Inter, cursive;
+}
+
+.info-box {
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  width: auto;
+  max-width: 90%;
+}
+
+.info-box .close-button {
+  border: none;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.info-box.info {
+  background-color: #494D4E;
+}
+
+.info-box.success {
+  background-color: #28a745;
+}
+
+.info-box.error {
+  background-color: #dc3545;
+}
+
+.formSection {
+  margin: 150vh auto 20vh;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  width: 60%;
+  min-height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 1s ease;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fadeIn {
+  animation: fadeIn 1s ease;
+}
+
+.mailerFormClass {
+  max-width: 600px;
+  position: relative;
+  margin: auto;
+}
+
+.icons-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.communication-icon {
+  width: 8vmin;
+  height: 8vmin;
+  object-fit: cover;
+  margin: 2vmin;
+}
+
+@media (max-width: 768px) {
+  .communication-icon {
+    width: 10vw;
+    height: 10vw;
+  }
+}
+
+.instructionTitle {
+  color: black;
+  font-family: Inter-Bold, serif;
+  font-size: 25px;
+  margin-top: 2vmin;
+}
+
+.instructionAddressBookTitle {
+  color: black;
+  font-family: Inter-Extra-Bold, serif;
+  margin-bottom: 3vmin;
+}
+
+.communication-icon.selected {
+  border: 12px none black;
+}
+
+
+.form-control.search-input {
+  margin-top: 3vmin;
+  margin-bottom: 5vmin;
+  background: #F8F8F8;
+  border: none;
+  border-radius: 1em;
+  padding: 0.75em;
+  width: 100%;
+  box-shadow: none;
+  font-family: Inter, serif;
+  transition: border-color 0.25s ease-out;
+}
+
+.form-control.search-input:focus {
+  background: #F8F8F8;
+  border: none;
+  outline: none;
+  box-shadow: inset 0 0 0 0.1em #d9d9d9;
+}
+
+.instructionChoiceUserBut {
+  min-width: 25vmin;
+  cursor: pointer;
+  height: 5vmin;
+  margin-right: 2vmin;
+  margin-left: 2vmin;
+  margin-top: 2vmin;
+  background-color: white;
+  color: black;
+  border: none;
+  font-family: 'Inter-Bold', serif;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease; /* Анимация фона, тени и трансформации */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.instructionChoiceServiceBut {
+  min-width: 25vmin;
+  cursor: pointer;
+  height: 5vmin;
+  margin: 2vmin 2vmin 3vmin;
+  background-color: dimgray;
+  color: white;
+  font-family: 'Inter-Bold', serif;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease; /* Анимация фона, тени и трансформации */
+}
+
+.instructionChoiceServiceBut:hover {
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+}
+
+.instructionChoiceServiceBut:active {
+  background-color: #444;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}
+
+.instructionChoiceServiceBut.active {
+  background-color: #444;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}
+
+.instructionChoiceUserBut:hover {
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+}
+
+.instructionChoiceUserBut:active {
+  background-color: #F8F8F8;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}
+
+.instructionChoiceUserBut.active {
+  background-color: #F8F8F8;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}
+
+.address-book-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.address-book-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.address-book-item:hover {
+  background-color: #f0f0f0;
+}
+
+.spinner {
+  animation: rotate 1s linear infinite;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  width: 50px;
+  height: 50px;
+}
+
+.spinner .path {
+  stroke: hsl(210, 5%, 90%);
+  stroke-linecap: round;
+  animation: dash 1s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+.nextPageButton {
+  width: 11vmin;
+  height: 3.9vmin;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+}
+
+.instructionNextButton {
+  width: 100%;
+  height: 60px;
+  align-items: center;
+  margin-top: 3vmin;
+  margin-bottom: 3vmin;
+  cursor: pointer;
+  background-color: black;
+  border: none;
+  color: white;
+  font-family: 'Inter-Extra-Bold', serif;
+  font-size: 24px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease; /* Анимация фона, тени и трансформации */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.instructionNextButton:active {
+  background-color: #444;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
 }
