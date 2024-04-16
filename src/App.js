@@ -1,15 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Route, Routes, Outlet, Navigate} from 'react-router-dom';
 import NavigationBar from './components/NavigationBar';
-import LoginPage from './components/LoginPage';
+import LoginPage from './components/pages/LoginPage';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import MailerPage from "./components/MailerPage";
+import MailerPage from "./components/pages/MailerPage";
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {setCredentials} from "./state/userSlice";
 import {AxiosInit} from "./utils/AxiosSettings";
+import CreateMailPage from "./components/pages/CreateMailPage";
+import AddressBooksPage from "./components/pages/AddressBooksPage";
+import PersonalAccountPage from "./components/pages/PersonalAccountPage";
+import AdminPanelPage from "./components/pages/AdminPanelPage";
+import SearchPage from "./components/pages/SearchPage";
+import ContactPage from "./components/pages/ContactPage";
 
 function App() {
     const dispatch = useDispatch();
@@ -42,6 +48,12 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/" element={<LayoutWithNav />}>
                 <Route index element={<MailerPage />} />
+                <Route path="/createMail" element={<CreateMailPage />} />
+                <Route path="/addressbooks" element={<AddressBooksPage />} />
+                <Route path="/account" element={<PersonalAccountPage />} />
+                <Route path="/admin" element={<AdminPanelPage />} />
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/contact" element={<ContactPage />} />
             </Route>
         </Routes>
     </Router>;

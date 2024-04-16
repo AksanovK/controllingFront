@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import bigLogo from '../assets/LOGObig.png';
-import { ReactComponent as Vector } from '../assets/vectorsLogin.svg';
+import bigLogo from '../../assets/LOGObig.png';
+import { ReactComponent as Vector } from '../../assets/vectorsLogin.svg';
 import {useDispatch, useSelector} from "react-redux";
-import {clearError, loginUser, logout} from "../state/userSlice";
-import InfoBox from "./InfoBox";
+import {clearError, loginUser, logout} from "../../state/userSlice";
+import InfoBox from "../InfoBox";
 function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

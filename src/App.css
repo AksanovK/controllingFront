@@ -186,7 +186,7 @@ html, body, #root {
 .vectorPosition {
   position: absolute;
   top: 40%;
-  left: 30%;
+  left: 25%;
   transform: translate(-50%, -50%);
   z-index: 10;
   align-content: center;
@@ -344,7 +344,9 @@ html, body, #root {
 .form-control.search-input {
   margin-top: 3vmin;
   margin-bottom: 5vmin;
-  background: #F8F8F8;
+  background: black;
+  opacity: 0.75;
+  color: white;
   border: none;
   border-radius: 1em;
   padding: 0.75em;
@@ -354,11 +356,22 @@ html, body, #root {
   transition: border-color 0.25s ease-out;
 }
 
+.form-control.search-input::placeholder {
+  color: white;
+  opacity: 0.75;
+}
+
+.form-control.search-input:focus::placeholder {
+  color: white;
+  opacity: 0.75;
+}
+
 .form-control.search-input:focus {
-  background: #F8F8F8;
+  background: black;
   border: none;
+  color: white;
   outline: none;
-  box-shadow: inset 0 0 0 0.1em #d9d9d9;
+  box-shadow: inset 0 0 0 0.1em black;
 }
 
 .instructionChoiceUserBut {
@@ -425,23 +438,29 @@ html, body, #root {
 .address-book-list {
   list-style: none;
   padding: 0;
-  margin: 0;
-  background: #fff;
-  border: 1px solid #ccc;
+  background: black;
+  opacity: 0.75;
+  color: white;
+  font-family: 'Inter-Extra-Bold', serif;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   max-height: 200px;
   overflow-y: auto;
+  margin-bottom: 5vh;
 }
 
 .address-book-item {
   padding: 10px 20px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  background: black;
+  opacity: 0.5;
+  color: ghostwhite;
 }
 
 .address-book-item:hover {
-  background-color: #f0f0f0;
+  background: black;
+  color: white;
+  opacity: 0.75;
 }
 
 .spinner {
@@ -512,4 +531,117 @@ html, body, #root {
   background-color: #444;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   transform: scale(0.98);
+}
+
+.communicationVariant {
+  margin: 150vh auto 20vh;
+  display: flex;
+  width: 1740px;
+  justify-content: space-between;
+}
+
+.communication-image {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease; /* Плавное изменение трансформации */
+  object-fit: cover; /* Обеспечивает заполнение блока без искажения */
+}
+
+.communication-image:hover {
+  transform: scale(1.1); /* Увеличивает изображение на 10% */
+}
+
+.image-container {
+  width: 41vh;
+  height: 69vh;
+  overflow: hidden;
+  margin: 0 5px; /* Добавляет небольшой отступ между изображениями */
+}
+
+
+.instructionTitleNew {
+  text-align: center; /* Центрирует текст */
+  width: 100%; /* Обеспечивает, что элемент занимает всю ширину */
+  margin-bottom: 5vh; /* Добавляет отступ снизу */
+  color: white;
+}
+
+.image-row-container {
+  display: flex; /* Выстраивает дочерние элементы в строку */
+  justify-content: center; /* Центрирует картинки по горизонтали */
+  align-items: center; /* Выравнивает картинки по вертикали */
+  width: 100%; /* Занимает всю доступную ширину */
+}
+
+.addressBooksSearch {
+  margin: 80vh auto 20vh;
+  min-height: 40vh;
+}
+
+.instructionAddressBookTitleNew {
+  color: white;
+  font-family: Inter-Extra-Bold, serif;
+  margin-bottom: 3vmin;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 2vh;
+  transform: translateY(-50%);
+  width: 1.55vh;
+  height: 1.55vh;
+  background-size: cover;
+  background-image: url('./assets/images/lupa.svg');
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+
+.sendingModeDiv {
+  margin: 80vh auto 20vh;
+  min-height: 40vh;
+}
+
+.cloud-container {
+  position: relative;
+  width: 100%;
+}
+
+.cloud-icon {
+  width: 100%;
+  height: auto;
+}
+
+.mail-text {
+  position: absolute;
+  font-size: 42px;
+  color: white;
+  opacity: 0.7;
+  cursor: pointer;
+  font-family: 'Inter-Extra-Bold', serif;
+}
+
+.mail-text:nth-of-type(1) {
+  bottom: 25%;
+  left: 25%;
+}
+
+.mail-text:nth-of-type(2) {
+  top: 25%;
+  right: 25%;
+}
+
+.mail-text:hover {
+  opacity: 1; /* При наведении прозрачность становится 1 */
+}
+
+.instructionsReadyText {
+  color: white;
+  font-family: Inter-Extra-Bold, serif;
+  margin-bottom: 3vmin;
+  font-size: 46px;
 }
