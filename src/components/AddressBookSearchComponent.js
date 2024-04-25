@@ -22,10 +22,10 @@ const AddressBookSearchComponent = ({ addressBooks, handleSetBook }) => {
 
         if (selectedBook) {
             setSelectedBook(selectedBook.name);
-            handleSetBook(selectedBook.name);
+            handleSetBook({name: selectedBook.name, id: selectedBook.id});
         } else {
             setSelectedBook('');
-            handleSetBook(selectedBook.name);
+            handleSetBook({name: selectedBook.name, id: selectedBook.id});
         }
 
         setShowDropdown(false);

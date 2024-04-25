@@ -45,6 +45,24 @@ html, body, #root {
 }
 
 @font-face {
+  font-family: 'Monospaced';
+  src: url('./assets/fonts/SpaceMono-Regular.ttf') format('woff'),
+  url('./assets/fonts/SpaceMono-Regular.ttf') format('woff');
+}
+
+@font-face {
+  font-family: 'Monospaced-Bold';
+  src: url('./assets/fonts/SpaceMono-Bold.ttf') format('woff'),
+  url('./assets/fonts/SpaceMono-Bold.ttf') format('woff');
+}
+
+@font-face {
+  font-family: 'Monospaced-Bold-Italic';
+  src: url('./assets/fonts/SpaceMono-BoldItalic.ttf') format('woff'),
+  url('./assets/fonts/SpaceMono-BoldItalic.ttf') format('woff');
+}
+
+@font-face {
   font-family: 'Inter';
   src: url('./assets/fonts/Inter-Regular.ttf') format('woff'),
   url('./assets/fonts/Inter-Regular.ttf') format('woff');
@@ -64,6 +82,7 @@ html, body, #root {
 
 .loginContainer {
   height: 65%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,6 +144,8 @@ html, body, #root {
 
 .vectorLoginContainer {
   flex-shrink: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
 .nav-container {
@@ -134,6 +155,12 @@ html, body, #root {
   padding: 0 20px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   height: 5vmin;
+  background-color: white;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
 }
 
 .nav-content {
@@ -167,16 +194,31 @@ html, body, #root {
 .nav-menu-left li a,
 .nav-menu-center li a,
 .nav-menu-right li a {
+  font-family: Inter-Bold, serif;
   text-decoration: none;
   color: #262626;
+}
+
+.nav-link {
+  color: #262626;
+  opacity: 0.75;
+  text-decoration: none;
+}
+
+.nav-link-active {
+  color: black; /* или любой другой цвет для активного состояния */
 }
 
 .logo {
   height: 4.5vmin;
   margin: 1vmin;
+  border-radius: 50%; /* Делает элемент полностью круглым */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень, чтобы придать глубину */
+  object-fit: cover; /* Убедитесь, что изображение не искажается */
 }
 
 .mailerBackground {
+  width: 100%;
   background-image: url('./assets/mailerVectorbig.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -190,14 +232,14 @@ html, body, #root {
   transform: translate(-50%, -50%);
   z-index: 10;
   align-content: center;
+  justify-content: center;
 }
 
 .startButton {
   width: 20vw;
   height: 60px;
-  padding: 10px 20px;
   cursor: pointer;
-  margin-left: 2%;
+  margin-right: 30%;
   margin-top: 2vmin;
   background-color: black;
   border: none;
@@ -251,6 +293,7 @@ html, body, #root {
   color: #fff;
   width: auto;
   max-width: 90%;
+  z-index: 9999;
 }
 
 .info-box .close-button {
@@ -645,3 +688,770 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   margin-bottom: 3vmin;
   font-size: 46px;
 }
+
+.searchPageDiv {
+
+  background-color: transparent; /* Убедитесь, что фон прозрачен */
+  height: 100%;
+}
+
+.searchHeaderDiv {
+  width: 100%;
+  margin-top: 20vh;
+}
+
+.searchTitle {
+  margin-bottom: 5vh;
+  font-family: Inter-Extra-Bold, serif;
+  font-size: 5vh;
+  color: black;
+  text-align: center;
+}
+
+.searchButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28vh;
+  height: 5vh;
+  background-color: black;
+  border: none;
+  color: white;
+  font-family: 'Inter-Extra-Bold', serif;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease; /* Анимация фона, тени и трансформации */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.searchButton:hover {
+  background-color: #222;
+}
+
+.searchButton:active {
+  background-color: #444;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}
+
+.searchButton img {
+  height: 2.6vh;
+  width: 2.6vh;
+}
+
+.searchProcessDiv {
+  margin: 80vh auto 30vh;
+  min-height: 65vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 2vh;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  font-family: 'Inter', serif;
+}
+
+.styled-table thead tr {
+  background-color: black;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+  border-bottom: 2px solid black;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: lightgray;
+  border-bottom: 2px solid black;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid black;
+}
+
+.styled-table tbody tr.active-row {
+  font-weight: bold;
+  color: black;
+}
+
+.searchTableDiv {
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  height: 100vh; /* Полная высота видимой области браузера */
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-family: 'Inter-Extra-Bold', serif;
+  font-size: 12rem;
+  z-index: 1000;
+}
+
+.loading-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background-color: black;
+  transform-origin: bottom;
+}
+
+.tableContainer {
+  width: 70%;
+  margin: auto;
+  padding-bottom: 3vh;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  max-height: 70vh; /* Ограничиваем максимальную высоту контейнера */
+  overflow: auto; /* Добавляем скролл при необходимости */
+}
+
+.tableContainerSearch {
+  width: 55%;
+  margin: auto;
+  padding-bottom: 3vh;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  max-height: 70vh; /* Ограничиваем максимальную высоту контейнера */
+  overflow: auto; /* Добавляем скролл при необходимости */
+}
+
+
+.custom-table {
+  width: 90%;
+  overflow: auto;
+  /* Добавляет отступ снизу */
+  margin: auto auto 3vh;
+  padding-bottom: 20px;
+}
+
+.custom-table-header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-family: 'Inter-Bold', serif;
+  font-size: 1.5vh;
+  padding: 1vh; /* Уменьшаем отступы в заголовках и строках */
+  background-color: white;
+  color: black;
+}
+
+.table-row {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-family: 'Inter-Bold', serif;
+  font-size: 1.5vh;
+  padding: 1vh; /* Уменьшаем отступы в заголовках и строках */
+  background-color: white;
+  color: black;
+}
+
+
+.header-item, .table-cell {
+  flex: 1;
+  text-align: center;
+  padding: 2vh 3vh;
+}
+
+.header-item-button, .table-cell-button {
+  width: 100px; /* Фиксированная ширина для кнопок */
+  text-align: center;
+  flex: none; /* Отмена растягивания по умолчанию */
+}
+
+
+.header-item-first {
+  flex: 2;  /* Увеличиваем ширину первых элементов */
+  text-align: start;
+  margin-right: 8vh;
+}
+
+.header-item-first-index {
+  flex: 1;  /* Соответствующая ширина для ячеек под первыми элементами */
+  text-align: start;
+  align-items: start;
+}
+
+.table-cell-first-name {
+  flex: 0 0 1;
+  min-width: 11vh;
+  text-align: start;
+  margin-right: 8vh;
+}
+
+.table-cell-first {
+  flex: 0 0 1;
+  min-width: 11vh;
+  text-align: start;
+
+}
+
+.table-cell-first-link {
+  flex: 0 0 auto;  /* Используйте auto вместо 1 для flex-basis, чтобы базовый размер соответствовал содержимому */
+  min-width: 11vh;
+  max-width: 17vh;/* Минимальная ширина элемента */
+  text-align: start;
+  overflow: hidden;  /* Скрывает содержимое, выходящее за пределы элемента */
+  white-space: nowrap;  /* Запрещает перенос текста на новую строку */
+  text-overflow: ellipsis;  /* Добавляет троеточие в конце обрезанного текста */
+}
+
+.custom-table-cell-link {
+  overflow: hidden;  /* Скрывает содержимое, выходящее за пределы элемента */
+  white-space: nowrap;  /* Запрещает перенос текста на новую строку */
+  text-overflow: ellipsis;  /* Добавляет троеточие в конце обрезанного текста */
+  max-width: 17vh;
+}
+
+
+.header-item {
+  flex: 1;
+  text-align: start;
+}
+
+.table-cell  {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 2;
+  text-align: center;
+  font-size: 2vh;
+  margin-left: 15vh;
+}
+
+.table-cell-delete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2vh auto;
+  flex: 2;
+  text-align: center;
+  font-size: 2vh;
+}
+
+.custom-table-header {
+  background-color: white;
+  font-family: 'Inter-Extra-Bold', serif;
+  color: black;
+  font-size: 2vh;
+}
+
+.table-cell {
+  padding: 10px;
+  text-align: start;
+}
+
+.table-row:nth-child(even) {
+  background-color: white;
+  color: black;
+}
+
+.contactTableIcon {
+  height: 2.6vh;
+  width: 2.6vh;
+}
+
+.contactTableAvatar {
+  height: 6.6vh;
+  width: 6.6vh;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  margin-bottom: 15vh;
+}
+
+.pagination button {
+  width: 5vh;
+  height: 5vh;
+  background-color: black;
+  border: none;
+  color: white;
+  font-family: 'Inter-Extra-Bold', serif;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 1vh;
+}
+
+.pagination button:hover {
+  background-color: #222;
+}
+
+.pagination button.active {
+  background-color: #444;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}
+
+.createMailDiv {
+  height: 100%;
+}
+
+.createMailHeaderFirstText {
+  height: 100%;
+  margin-top: 10vh;
+  text-align: center;
+  color: black;
+  font-family: Inter-Extra-Bold, serif;
+  font-size: 3vh;
+}
+
+.createMailHeaderText {
+  height: 100%;
+  text-align: center;
+  margin-top: 5vh;
+  margin-bottom: 1vh;
+  color: black;
+  font-family: Inter-Extra-Bold, serif;
+  font-size: 3vh;
+}
+
+.table-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7vh;
+  height: 7vh;
+  align-items: center;
+  margin-top: 3vmin;
+  margin-bottom: 3vmin;
+  cursor: pointer;
+  background-color: black;
+  border: none;
+  color: white;
+  font-family: 'Inter-Extra-Bold', serif;
+  font-size: 24px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease; /* Анимация фона, тени и трансформации */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.table-button:active {
+  background-color: #444;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}
+
+.table-button-next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15vh;
+  height: 7vh;
+  align-items: center;
+  text-align: center;
+  margin-top: 3vmin;
+  flex: none;
+  margin-bottom: 3vmin;
+  cursor: pointer;
+  background-color: black;
+  border: none;
+  color: white;
+  font-family: 'Inter-Extra-Bold', serif;
+  font-size: 24px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease; /* Анимация фона, тени и трансформации */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.table-button-next:active {
+  background-color: #444;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}
+
+.mailBodyDiv {
+  margin-top: 10vh;
+  margin-bottom: 20vh; /* Добавляем нижний отступ */
+}
+
+.subjectDiv, .bodyDiv {
+  margin: 1vh 0;
+  background-color: transparent; /* Сделать фон прозрачным */
+  border: 2px solid black; /* Черная рамка вместо фона */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.inputField, .textareaField {
+  width: 100%;
+  background-color: transparent; /* Сделать фон прозрачным */
+  border: none; /* Убрать внутренние границы */
+  color: black; /* Цвет текста */
+  outline: none;
+  font-family: Inter-Bold, serif;
+}
+
+.textareaField {
+  min-height: 50vh;
+   /* Отключить возможность изменения размера */
+}
+
+.animationCreateMailDiv {
+  text-align: center;
+  width: 150vh;
+  height: auto;
+  margin: 1vh auto 15vh;
+}
+
+.animationSearchDiv {
+  textAlign: center;
+  margin: 1vh auto 15vh;
+}
+
+.sendMessageButton {
+  width: 20vw;
+  height: 6vh;
+  margin-bottom: 5vh;
+  margin-top: 2vmin;
+  background-color: black;
+  align-items: center;
+  border: none;
+  color: white;
+  font-family: 'Inter-Extra-Bold', serif;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease; /* Анимация фона, тени и трансформации */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.sendMessageButton:hover {
+  background-color: #222;
+}
+
+.sendMessageButton:active {
+  background-color: #444;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}
+
+.sendMessageButtonDiv {
+  align-items: center;
+}
+
+.bookBackgroundImg {
+  width: 24vh;
+  height: 24vh;
+}
+
+.addressBookDiv {
+  align-items: center;
+  height: 65vh; /* Увеличение высоты карточки */
+  width: 40vh; /* Увеличение ширины карточки */
+  margin: 2vh;
+}
+
+.bookRootDiv {
+  background-color: black;
+}
+
+.addressBookDiv {
+  background-color: black; /* Установка черного фона */
+  border: 2px solid black; /* Черные рамки */
+  width: 32vh; /* Фиксированная ширина */
+  height: 52vh; /* Фиксированная высота */
+  color: white; /* Текст белого цвета для лучшей видимости на черном фоне */
+}
+
+.booksDiv {
+  display: flex;
+  justify-content: space-around; /* Равномерно распределяет содержимое вдоль линии с добавлением пространства вокруг элементов */
+  align-items: center; /* Центрирование содержимого по вертикали */
+  flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
+  padding: 20px; /* Добавление небольшого отступа вокруг контейнера */
+}
+
+.card {
+  display: flex;
+  flex-direction: column; /* Ориентация элементов карточки в столбец */
+  justify-content: space-between; /* Распределение содержимого по вертикали */
+}
+
+.row {
+  width: 100%;
+  flex: 1;
+
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Высота, растягивающаяся на всю карточку */
+}
+
+.addressBookOpenButton {
+  width: 20vw;
+  height: 6vh;
+  margin-top: 2vmin;
+  background-color: white;
+  align-items: center;
+  border: none;
+  color: black;
+  font-family: 'Inter-Extra-Bold', serif;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease; /* Анимация фона, тени и трансформации */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.addressBookOpenButton:hover {
+  background-color: whitesmoke;
+}
+
+.addressBookOpenButton:active {
+  background-color: #C7C7C7;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}
+
+.card-title {
+  color: white;
+  align-items: center;
+}
+
+.dotStyle {
+  width: 1.5vh;
+  height: 1.5vh;
+}
+
+.dotDivStyle {
+  width: 100%;
+  align-items: end;
+}
+
+.addressBookPageTitle {
+  width: 100%;
+  text-align: center;
+  margin-top: 10vh;
+  margin-bottom: 5vh;
+}
+
+
+.personalAccountDiv {
+  margin-top: 3vh;
+  width: 100%;
+}
+
+.animationHeaderDiv {
+  align-items: center;
+  text-align: left; /* Текст выровнен по левому краю */
+  width: 40%; /* Уменьшена ширина, если нужно */
+  margin-left: 0; /* Установлено выравнивание по левому краю */
+  padding: 20px; /* Паддинг для внутреннего содержимого */
+}
+
+.accountHeaderDiv {
+  background-color: white; /* Белый фон */
+  border-radius: 10px; /* Округление углов */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.15); /* Тень */
+  padding: 20px; /* Внутренний отступ */
+  margin-top: 5vh;
+}
+
+.accountBoldP {
+  font-family: 'Inter-Bold', serif;
+  font-size: 24px; /* Увеличен размер текста */
+  margin-right: 1vh;
+}
+
+.accountP {
+  font-family: 'Inter', serif;
+  font-size: 20px; /* Увеличен размер текста */
+}
+
+.accountMarginDiv {
+  margin-bottom: 2vh;
+  align-items: center;
+}
+
+.accountMarginIconsDiv {
+  margin-bottom: 2vh;
+  align-items: center;
+  text-align: center;
+}
+
+.statisticsDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  margin-top: 5vh;
+  height: fit-content;
+  width: 25%; /* Процент может быть адаптирован */
+}
+
+.statisticsHeader {
+  font-family: 'Inter-Bold', serif;
+  font-size: 24px;
+  margin-bottom: 2vh;
+}
+
+.dividerImage {
+  width: 100%;
+  margin: 2vh 0;
+}
+
+.paginationBooks {
+  margin-bottom: 5vh;
+}
+
+.paginationContactsDiv {
+  margin-top: 5vh;
+}
+
+.uploadContainer {
+  margin: 5vh auto;
+  min-height: 15vh;
+  font-family: 'Inter', serif;
+}
+
+.contactName {
+  color: black;
+  font-size: 16vh;
+  margin-bottom: 35vh;
+}
+
+.contactTitleDiv {
+  textAlign: center;
+  width: 100%;
+  font-family: 'Inter-Extra-Bold', serif;
+}
+
+.contactTitleIcon {
+  margin: 15vh auto;
+  width: 15%;
+  height: 15%;
+}
+
+.contactAddress {
+  margin-bottom: 25vh;
+}
+
+.contactAddress h3 {
+  text-align: start;
+  font-family: 'Inter-Bold', serif;
+  font-size: 8vh;
+  margin-top: 25vh;
+  margin-bottom: 5vh;
+  margin-left: 3vh;
+  color: black;
+}
+
+.contactDetails h3 {
+  text-align: start;
+  font-family: 'Inter-Bold', serif;
+  font-size: 8vh;
+  margin-bottom: 5vh;
+  margin-left: 3vh;
+  color: black;
+}
+
+.contactAddress p {
+  font-family: 'Inter', serif;
+  font-size: 3vh;
+  margin-left: 3vh;
+  color: black;
+}
+
+.contactDetails p {
+  text-align: start;
+  margin-left: 3vh;
+  font-family: 'Inter', serif;
+  font-size: 5vh;
+  color: black;
+}
+
+.contactAddress span {
+  font-family: 'Inter', serif;
+  font-size: 5vh;
+  margin-left: 10vh;
+  color: black;
+}
+
+.addressBooksHeaderDiv {
+  margin-top: 30vh;
+  text-align: center;
+  margin-bottom: 100vh;
+  width: 100%;
+}
+
+.bookHeaderTitle {
+  font-family: 'Inter-Extra-Bold', serif;
+  font-size: 15vh;
+  color: black;
+}
+
+.bookHeaderSecondTitle {
+  margin-top: 5vh;
+  font-family: 'Inter', serif;
+  font-size: 2.5vh;
+  color: gray;
+}
+
+.booksStartButton {
+  width: 20vw;
+  height: 60px;
+  cursor: pointer;
+  margin-top: 5vmin;
+  background-color: black;
+  border: none;
+  color: white;
+  font-family: 'Inter-Extra-Bold', serif;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease; /* Анимация фона, тени и трансформации */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.booksStartButton:hover {
+  background-color: #222;
+}
+
+.booksStartButton:active {
+  background-color: #444;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}
+
+.contactPageComponentDiv {
+  margin-top: 15vh;
+}
+
+

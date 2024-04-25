@@ -1,21 +1,18 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import axios from "axios";
 import {useSelector} from "react-redux";
-import vkLogo from "../../assets/vkicon.svg";
-import wsLogo from "../../assets/whatsicon.svg";
-import tgLogo from "../../assets/tgicon.svg";
-import mailLogo from "../../assets/mailicon.svg";
 import {useNavigate} from "react-router-dom";
 import CommunicationVariantComponent from "../CommunicationVariantComponent";
 import AddressBookSearchComponent from "../AddressBookSearchComponent";
 import SendingModeChoiceComponent from "../SendingModeChoiceComponent";
 import InstructionsReadyComponent from "../InstructionsReadyComponent";
 import InfoBox from "../InfoBox";
+import MailerHeaderTitleComponent from "../MailerHeaderTitleComponent";
 
 function MailerPage() {
     const [addressBooks , setAddressBooks] = useState([]);
     const [selectedIcon, setSelectedIcon] = useState(null);
-    const [selectedBook, setSelectedBook] = useState('');
+    const [selectedBook, setSelectedBook] = useState({});
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
     const [isServiceAddress, setServiceAddress] = useState(true);
@@ -44,7 +41,8 @@ function MailerPage() {
             const element = document.getElementById(id);
             if (element) {
                 element.scrollIntoView({
-                    behavior: 'smooth'
+                    behavior: 'smooth',
+                    block: 'center'
                 });
             }
             setTimeout(() => {
@@ -67,7 +65,7 @@ function MailerPage() {
     }, []);
 
     const handleSetBook = useCallback((book) => {
-        setSelectedBook(book);
+        setSelectedBook({name: book.name, id: book.id});
         scrollToElementWithId("SendingModeChoice");
     }, []);
 
@@ -85,10 +83,7 @@ function MailerPage() {
     ) : (
         <div className="mailerBackground">
             <div className="vectorPosition">
-                <p className="mailerTitle">Создать новую<br/> рассылку</p>
-                <button onClick={() => scrollToElementWithId("communicationVariantMotion")} className="startButton">
-                    Начать
-                </button>
+                <MailerHeaderTitleComponent handleSearch={() => scrollToElementWithId("communicationVariantMotion")}/>
             </div>
             <div className={"communicationVariant"}>
                 <CommunicationVariantComponent handleImageClick={handleImageClick} />

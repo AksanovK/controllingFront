@@ -1,5 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {BrowserRouter as Router, Route, Routes, Outlet, Navigate} from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    Outlet,
+    Navigate,
+    useNavigate,
+    useLocation,
+    BrowserRouter
+} from 'react-router-dom';
 import NavigationBar from './components/NavigationBar';
 import LoginPage from './components/pages/LoginPage';
 import './App.css';
@@ -16,11 +25,26 @@ import PersonalAccountPage from "./components/pages/PersonalAccountPage";
 import AdminPanelPage from "./components/pages/AdminPanelPage";
 import SearchPage from "./components/pages/SearchPage";
 import ContactPage from "./components/pages/ContactPage";
+import InfoBox from "./components/InfoBox";
 
 function App() {
     const dispatch = useDispatch();
     const [accessToken, setAccessToken] = useState('');
     const [refreshToken, setRefreshToken] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+
+    useEffect(() => {
+        const lastPath = localStorage.getItem('lastPath');
+        if (lastPath ?? isAuthenticated) {
+            navigate(lastPath);
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('lastPath', location.pathname);
+    }, [location]);
 
     useEffect(() => {
         const accessTokenValue = localStorage.getItem('accessToken');
@@ -43,7 +67,7 @@ function App() {
     }, [dispatch]);
 
     axios.defaults.withCredentials = true;
-    return <Router>
+    return (
         <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/" element={<LayoutWithNav />}>
@@ -55,12 +79,12 @@ function App() {
                 <Route path="/search" element={<SearchPage />} />
                 <Route path="/contact" element={<ContactPage />} />
             </Route>
-        </Routes>
-    </Router>;
+        </Routes>);
 }
 
 function LayoutWithNav() {
     const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+
     return (
         <div>
             <NavigationBar />

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import smallLogo from '../assets/smallLogo.svg';
 import {logout} from "../state/userSlice";
 import {useDispatch} from "react-redux";
@@ -22,11 +22,11 @@ const NavigationBar = () => {
             </ul>
             <div className="nav-content">
                 <ul className="nav-menu-center">
-                    <li><Link to="/">Рассылка</Link></li>
-                    <li><Link to="/search">Поиск</Link></li>
-                    <li><Link to="/account">Личный кабинет</Link></li>
-                    <li><Link to="/addressbooks">Адресные книги</Link></li>
-                    <li><Link to="/admin">Админ</Link></li>
+                    <li><NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link-active' : 'nav-link'}>Рассылка</NavLink></li>
+                    <li><NavLink to="/search" className={({ isActive }) => isActive ? 'nav-link-active' : 'nav-link'}>Поиск</NavLink></li>
+                    {/*<li><NavLink to="/account" className={({ isActive }) => isActive ? 'nav-link-active' : 'nav-link'}>Личный кабинет</NavLink></li>*/}
+                    <li><NavLink to="/addressbooks" className={({ isActive }) => isActive ? 'nav-link-active' : 'nav-link'}>Адресные книги</NavLink></li>
+                    <li><NavLink to="/admin" className={({ isActive }) => isActive ? 'nav-link-active' : 'nav-link'}>Админ</NavLink></li>
                 </ul>
             </div>
             <ul className="nav-menu-right">

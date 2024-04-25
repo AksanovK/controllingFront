@@ -1,14 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import AccountHeaderComponent from "../AccountHeaderComponent";
 
 function PersonalAccountPage() {
 
     return (
-        <div>
-            <h1>Personal Account</h1>
+        <div className={"personalAccountDiv"}>
             <div>
-                <h3>Username: {'USER'}</h3>
-                <p>Email: {'EMAIL'}</p>
+                <AccountHeaderComponent />
             </div>
         </div>
     );

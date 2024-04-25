@@ -1,16 +1,50 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import SearchHeaderTitleComponent from "../SearchHeaderTitleComponent";
+import SearchProcessAnimComponent from "../SearchProcessAnimComponent";
 
 function SearchPage() {
+    const [animate, setAnimate] = useState(false);
+    const [initialScrollDone, setInitialScrollDone] = useState(false);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        setTimeout(() => {
+            setInitialScrollDone(true); // Устанавливаем флаг после завершения скролла
+        }, 100); // Даем небольшую задержку для гарантии, что скролл завершился
+    }, []);
+    const scrollToElementWithId = (id) => {
+        if (!initialScrollDone) return; // Не выполняем скролл до элемента, пока начальный скролл не завершен
+
+        setAnimate(false);
+        setTimeout(() => {
+            setAnimate(true);
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+            setTimeout(() => {
+                setAnimate(false);
+            }, 100);
+        }, 10);
+    };
+
     const handleSearch = () => {
-        // Здесь можно добавить логику для запуска поиска абитуриентов
-        console.log('Search started');
+        scrollToElementWithId("searchProcessDiv");
     };
 
     return (
-        <div>
-            <h1>Search Page</h1>
-            <p>Нажмите кнопку ниже, чтобы запустить поиск абитуриентов.</p>
-            <button onClick={handleSearch}>Запустить</button>
+        <div className="searchPageDiv">
+            <div className={"searchHeaderDiv"}>
+                <SearchHeaderTitleComponent handleSearch={handleSearch}/>
+            </div>
+            {/*<div className={"searchProcessDiv"}>*/}
+            {/*    <SearchStudentsComponent />*/}
+            {/*</div>*/}
+            {initialScrollDone ? <div className={"searchProcessDiv"}>
+                <SearchProcessAnimComponent />
+            </div> : <></>}
         </div>
     );
 }
