@@ -1,45 +1,32 @@
-import React, {useState} from 'react';
+import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import {MessengersConverter} from "../utils/messengersConverter";
 
-const CreateMailHeaderComponent= ({messenger, bookName, address, scrollMove}) => {
+const CreateMailHeaderComponent= ({messenger, bookName, address, isCascade, selectedMessengers}) => {
     const controls = useAnimation();
     const [ref, inView] = useInView();
-    const [messengerText, setmessengerText] = useState("");
-    const [bookText, setbookText] = useState("");
-    const [addressText, setaddressText] = useState("");
+    const [messengerText, setMessengerText] = React.useState("");
+    const [bookText, setBookText] = React.useState("");
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (inView) {
             controls.start('visible');
-            printText(1, "Выбранный способ связи: " + messenger);
-            printText(2, "Выбранная адресная книга: " + bookName);
-            printText(3, "Выбранный адресс: " + (address ? 'адрес пользователя' : 'адрес сервиса'));
+            if (!isCascade) {
+                setMessengerText("Выбранный способ связи: " + messenger);
+            } else {
+                const messengersList = selectedMessengers.map(m => MessengersConverter(m)).join(', ');
+                setMessengerText("Выбранные способы связи: " + messengersList);
+            }
+            setBookText("Выбранная адресная книга: " + bookName);
         } else {
             controls.start('hidden');
         }
-    }, [controls, inView]);
+    }, [controls, inView, messenger, bookName, address]);
 
     const variants = {
         visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
         hidden: { opacity: 0, scale: 0.95 }
-    };
-
-    const printText = (mode, textToPrint) => {
-        let index = 0;
-        const printInterval = setInterval(() => {
-            if (mode === 1) {
-                setmessengerText(textToPrint.slice(0, index + 1));
-            } else if (mode === 2) {
-                setbookText(textToPrint.slice(0, index + 1));
-            } else {
-                setaddressText(textToPrint.slice(0, index + 1));
-            }
-            index++;
-            if (index === textToPrint.length) {
-                clearInterval(printInterval);
-            }
-        }, 100);
     };
 
     return (
@@ -49,11 +36,10 @@ const CreateMailHeaderComponent= ({messenger, bookName, address, scrollMove}) =>
             initial="hidden"
             animate={controls}
             variants={variants}
-            style={{ height: '100%', textAlign: 'center', width: '100%', margin: '2vh auto' }}
+            style={{ height: '100%', textAlign: 'left', width: '100%', margin: '2vh auto' }}
         >
             <h2 className="createMailHeaderFirstText">{messengerText}</h2>
             <h2 className="createMailHeaderText">{bookText}</h2>
-            <h2 className="createMailHeaderText">{addressText}</h2>
         </motion.div>
     );
 }

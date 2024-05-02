@@ -35,7 +35,7 @@ const SearchHeaderTitleComponent = ({ handleSearch }) => {
                 margin: '2vh auto'
             }}
         >
-            <h2 className="searchTitle">Запустить поиск<br/>абитуриентов</h2>
+            <h2 className="searchTitle">Поиск новых <br/> контактов</h2>
             <button onClick={handleSearch} className="searchButton" aria-label="Начать поиск">
                 <img src={LupaIcon} alt="Поиск" />
             </button>

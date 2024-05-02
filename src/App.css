@@ -577,7 +577,7 @@ html, body, #root {
 }
 
 .communicationVariant {
-  margin: 150vh auto 20vh;
+  margin: 80vh auto 20vh;
   display: flex;
   width: 1740px;
   justify-content: space-between;
@@ -594,6 +594,21 @@ html, body, #root {
   transform: scale(1.1); /* Увеличивает изображение на 10% */
 }
 
+.communication-image-cascade {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease; /* Плавное изменение трансформации */
+  object-fit: cover;
+}
+
+.communication-image-cascade:hover {
+  transform: scale(1.1);
+}
+
+.communication-image-cascade.selected {
+  transform: scale(1.1);
+}
+
 .image-container {
   width: 41vh;
   height: 69vh;
@@ -607,6 +622,8 @@ html, body, #root {
   width: 100%; /* Обеспечивает, что элемент занимает всю ширину */
   margin-bottom: 5vh; /* Добавляет отступ снизу */
   color: white;
+  font-family: Inter-Bold, serif;
+  font-size: 4vh;
 }
 
 .image-row-container {
@@ -645,7 +662,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 
 .sendingModeDiv {
-  margin: 80vh auto 20vh;
+  margin: 150vh auto 20vh;
   min-height: 40vh;
 }
 
@@ -1024,7 +1041,8 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 .createMailHeaderFirstText {
   height: 100%;
   margin-top: 10vh;
-  text-align: center;
+  margin-left: 26vh;
+  text-align: start;
   color: black;
   font-family: Inter-Extra-Bold, serif;
   font-size: 3vh;
@@ -1032,16 +1050,17 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 .createMailHeaderText {
   height: 100%;
-  text-align: center;
+  text-align: start;
   margin-top: 5vh;
   margin-bottom: 1vh;
+  margin-left: 26vh;
   color: black;
   font-family: Inter-Extra-Bold, serif;
   font-size: 3vh;
 }
 
 .table-button {
-  display: flex;
+
   justify-content: center;
   align-items: center;
   width: 7vh;
@@ -1368,7 +1387,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 .contactAddress h3 {
   text-align: start;
   font-family: 'Inter-Bold', serif;
-  font-size: 8vh;
+  font-size: 7vh;
   margin-top: 25vh;
   margin-bottom: 5vh;
   margin-left: 3vh;
@@ -1386,7 +1405,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 .contactAddress p {
   font-family: 'Inter', serif;
-  font-size: 3vh;
+  font-size: 2vh;
   margin-left: 3vh;
   color: black;
 }
@@ -1401,7 +1420,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 .contactAddress span {
   font-family: 'Inter', serif;
-  font-size: 5vh;
+  font-size: 4vh;
   margin-left: 10vh;
   color: black;
 }
@@ -1454,4 +1473,73 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   margin-top: 15vh;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  overflow-x: hidden;
+}
+
+@layer components {
+
+  .contactPageAvatar {
+    width: 22vh;
+    height: 22vh;
+    margin-bottom: 10vh;
+  }
+
+  .raleway-1 {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .inter-font {
+    font-family: Inter-Bold, serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .inter-font-thin {
+    font-family: Inter, serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .inter-font-bold {
+    font-family: Inter-Extra-Bold, serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .jersey-25-regular {
+    font-family: "Jersey 25", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .image {
+    -webkit-mask-image: url(./assets/images/ellipseStroke.svg);
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    height: 100%;
+  }
+
+  .text-stroke {
+
+    -webkit-text-stroke-color:  black;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 1px ;
+  }
+
+  .perspective {
+    perspective: 2200px;
+  }
+}
 

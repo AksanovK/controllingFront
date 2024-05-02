@@ -16,14 +16,18 @@ function ContactPage() {
 
     useEffect(() => {
         (async function () {
-            let contactData = await axios.get('/contacts/getContactPage', {
-                params: {
-                    contactId: index
+            try {
+                let contactData = await axios.get('/api/contacts/getContactPage', {
+                    params: {
+                        contactId: index
+                    }
+                });
+                if (contactData) {
+                    setContact(contactData.data);
+                    setLoading(false);
                 }
-            });
-            if (contactData) {
-               setContact(contactData.data);
-               setLoading(false);
+            } catch (error) {
+                console.error('Ошибка: ', error);
             }
         })();
     }, []);

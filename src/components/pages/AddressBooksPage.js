@@ -89,7 +89,7 @@ function AddressBooksPage() {
     useEffect(() => {
         (async function () {
             if (loading === true) {
-                let instructionsData = await axios.get('/instructions/get', {
+                let instructionsData = await axios.get('/api/instructions/get', {
                     params: {
                         userId: userId
                     }
@@ -130,7 +130,7 @@ function AddressBooksPage() {
     const handleBookClick = async (bookId) => {
         setSelectedBook(bookId);
         try {
-            const response = await axios.get(`/addressBooks/getContactsByBookId`, {params: {bookId: bookId}});
+            const response = await axios.get(`/api/addressBooks/getContactsByBookId`, {params: {bookId: bookId}});
             setContacts(response.data);
             setShowContacts(true);
             const contactsMotionDiv = document.getElementById('contactsMotionDiv');
@@ -207,7 +207,7 @@ function AddressBooksPage() {
         formData.append("file", file);
         formData.append("userId", userId);
 
-        axios.post("/addressBooks/addAddressBook", formData, {
+        axios.post("/api/addressBooks/addAddressBook", formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -227,7 +227,7 @@ function AddressBooksPage() {
     };
 
     const handleDelete = (contactId) => {
-        axios.post("contacts/deleteContact", { contactId: contactId })
+        axios.post("/api/contacts/deleteContact", { contactId: contactId })
             .then(response => {
                 const newStudents = contacts.filter(student => student.id !== contactId);
                 setStudents(newStudents);
@@ -239,7 +239,7 @@ function AddressBooksPage() {
 
     const deleteBook = async (bookId) => {
         try {
-            const response = await axios.post("/addressBooks/deleteAddressBook", null, {
+            const response = await axios.post("/api/addressBooks/deleteAddressBook", null, {
                 params: {bookId}
             });
             if (response.status === 200) {

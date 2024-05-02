@@ -8,21 +8,24 @@ import SendingModeChoiceComponent from "../SendingModeChoiceComponent";
 import InstructionsReadyComponent from "../InstructionsReadyComponent";
 import InfoBox from "../InfoBox";
 import MailerHeaderTitleComponent from "../MailerHeaderTitleComponent";
+import CommunicationCascadeVariantComponent from "../CommunicationCascadeVariantComponent";
 
 function MailerPage() {
     const [addressBooks , setAddressBooks] = useState([]);
+    const [selectedMessengers, setSelectedMessengers] = useState([]);
     const [selectedIcon, setSelectedIcon] = useState(null);
     const [selectedBook, setSelectedBook] = useState({});
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
     const [isServiceAddress, setServiceAddress] = useState(true);
+    const [isCascade, setCascade] = useState(false);
     const userId = useSelector(state => state.user.user);
     const [animate, setAnimate] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         (async function () {
-            let instructionsData = await axios.get('/instructions/get', {
+            let instructionsData = await axios.get('/api/instructions/get', {
                 params: {
                     userId: userId
                 }
@@ -52,8 +55,10 @@ function MailerPage() {
     };
 
     const onNextPage = () => {
-        if (selectedIcon && selectedBook) {
-            navigate('/createMail', { state: { selectedIcon, selectedBook, isServiceAddress } });
+        if (selectedIcon && selectedBook && !isCascade) {
+            navigate('/createMail', { state: { selectedIcon, selectedBook, isServiceAddress, isCascade, selectedMessengers } });
+        } else if (isCascade && selectedMessengers && selectedBook) {
+            navigate('/createMail', { state: { selectedIcon, selectedBook, isServiceAddress, isCascade, selectedMessengers } });
         } else {
             setError('Не все инструкции готовы');
         }
@@ -64,14 +69,24 @@ function MailerPage() {
         scrollToElementWithId("addressBooksSearchMotion")
     }, []);
 
+    const handleNextClick = useCallback((variants) => {
+        setSelectedMessengers(variants);
+        scrollToElementWithId("addressBooksSearchMotion")
+    }, []);
+
     const handleSetBook = useCallback((book) => {
         setSelectedBook({name: book.name, id: book.id});
-        scrollToElementWithId("SendingModeChoice");
+        scrollToElementWithId("InstructionsReady");
     }, []);
 
     const handleHoverMode = useCallback((hoverText) => {
-        setServiceAddress(hoverText === "service");
-        scrollToElementWithId("InstructionsReady");
+        if (hoverText !== "cascade") {
+            setCascade(false);
+            scrollToElementWithId("communicationVariantMotion");
+        } else {
+            setCascade(true);
+            scrollToElementWithId("communicationCascadeVariantMotion");
+        }
     }, []);
 
     return loading ? (
@@ -83,16 +98,18 @@ function MailerPage() {
     ) : (
         <div className="mailerBackground">
             <div className="vectorPosition">
-                <MailerHeaderTitleComponent handleSearch={() => scrollToElementWithId("communicationVariantMotion")}/>
-            </div>
-            <div className={"communicationVariant"}>
-                <CommunicationVariantComponent handleImageClick={handleImageClick} />
-            </div>
-            <div className={"addressBooksSearch"}>
-                <AddressBookSearchComponent addressBooks={addressBooks} handleSetBook={handleSetBook}/>
+                <MailerHeaderTitleComponent handleSearch={() => scrollToElementWithId("SendingModeChoice")}/>
             </div>
             <div className={"sendingModeDiv"}>
                 <SendingModeChoiceComponent handleHoverMode={handleHoverMode} />
+            </div>
+            {!isCascade ? <div className={"communicationVariant"}>
+                <CommunicationVariantComponent handleImageClick={handleImageClick} />
+            </div> : <div className={"communicationVariant"}>
+                <CommunicationCascadeVariantComponent handleNextClick={handleNextClick} />
+            </div>}
+            <div className={"addressBooksSearch"}>
+                <AddressBookSearchComponent addressBooks={addressBooks} handleSetBook={handleSetBook}/>
             </div>
             <div className={"addressBooksSearch"}>
                 <InstructionsReadyComponent onNextPage={onNextPage} />

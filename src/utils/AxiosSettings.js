@@ -29,7 +29,7 @@ export function AxiosInit() {
                         try {
                             const accessToken = localStorage.getItem('accessToken');
                             const refreshToken = localStorage.getItem('refreshToken');
-                            const refreshResponse = await axios.get('/refresh', {
+                            const refreshResponse = await axios.get('/api/refresh', {
                                 headers: {
                                     'ACCESS-TOKEN': accessToken,
                                     'REFRESH-TOKEN': refreshToken
@@ -45,7 +45,7 @@ export function AxiosInit() {
                             manualLogout();
                             const refreshToken = localStorage.getItem('refreshToken');
                             localStorage.clear();
-                            await axios.get('/logout', {
+                            await axios.get('/api/logout', {
                                 headers: {
                                     'Refresh-Token': refreshToken
                                 }
@@ -57,7 +57,7 @@ export function AxiosInit() {
                         manualLogout();
                         const refreshToken = localStorage.getItem('refreshToken');
                         localStorage.clear();
-                        await axios.get('/logout', {
+                        await axios.get('/api/logout', {
                             headers: {
                                 'Refresh-Token': refreshToken
                             }
@@ -69,7 +69,7 @@ export function AxiosInit() {
                         manualLogout();
                     const refreshToken = localStorage.getItem('refreshToken');
                     localStorage.clear();
-                    await axios.get('/logout', {
+                    await axios.get('/api/logout', {
                         headers: {
                             'Refresh-Token': refreshToken
                         }

@@ -19,9 +19,9 @@ const TableItemComponent = ({ id, student, index, handleDelete }) => {
                     <BsArrowRight size={40} style={{ color: 'white' }} onClick={goToContactPage} />
                 </button>
             </td>
-            <td className="py-3">
+            <td className="py-3 text-center">
                 <button className="table-button" onClick={() => handleDelete(id)}>
-                    <img src={deleteIcon} alt="Delete" className="contactTableIcon" />
+                    <img src={deleteIcon} alt="Delete" className="contactTableIcon ml-5" />
                 </button>
             </td>
         </tr>

@@ -66,7 +66,7 @@ const AddressBookSearchComponent = ({ addressBooks, handleSetBook }) => {
                     className="form-control search-input"
                     placeholder="Поиск адресной книги"
                     onChange={handleSearchChange}
-                    style={{ paddingRight: '25vh' }} // Учитываем ширину иконки
+                    style={{ paddingRight: '25vh' }}
                 />
                 <span className="search-icon"></span>
             </div>

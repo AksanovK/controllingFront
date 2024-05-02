@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import SearchHeaderTitleComponent from "../SearchHeaderTitleComponent";
 import SearchProcessAnimComponent from "../SearchProcessAnimComponent";
+import SearchFiltersComponent from "../SearchFiltersComponent";
 
 function SearchPage() {
     const [animate, setAnimate] = useState(false);
@@ -9,16 +10,39 @@ function SearchPage() {
     useEffect(() => {
         window.scrollTo(0, 0);
         setTimeout(() => {
-            setInitialScrollDone(true); // Устанавливаем флаг после завершения скролла
-        }, 100); // Даем небольшую задержку для гарантии, что скролл завершился
+            setInitialScrollDone(true);
+        }, 100);
     }, []);
     const scrollToElementWithId = (id) => {
-        if (!initialScrollDone) return; // Не выполняем скролл до элемента, пока начальный скролл не завершен
+        if (!initialScrollDone) return;
 
         setAnimate(false);
         setTimeout(() => {
             setAnimate(true);
             const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }
+            setTimeout(() => {
+                setAnimate(false);
+            }, 100);
+        }, 10);
+    };
+
+    const handleSearch = () => {
+        scrollToElementWithId("searchFiltersAnimDiv");
+    };
+
+    const startSearch = () => {
+        if (!initialScrollDone) return;
+
+        setAnimate(false);
+        setTimeout(() => {
+            setAnimate(true);
+            const element = document.getElementById("searchProcessDiv");
             if (element) {
                 element.scrollIntoView({
                     behavior: 'smooth'
@@ -30,18 +54,14 @@ function SearchPage() {
         }, 10);
     };
 
-    const handleSearch = () => {
-        scrollToElementWithId("searchProcessDiv");
-    };
-
     return (
         <div className="searchPageDiv">
             <div className={"searchHeaderDiv"}>
                 <SearchHeaderTitleComponent handleSearch={handleSearch}/>
             </div>
-            {/*<div className={"searchProcessDiv"}>*/}
-            {/*    <SearchStudentsComponent />*/}
-            {/*</div>*/}
+            <div>
+                <SearchFiltersComponent startSearch={startSearch} />
+            </div>
             {initialScrollDone ? <div className={"searchProcessDiv"}>
                 <SearchProcessAnimComponent />
             </div> : <></>}

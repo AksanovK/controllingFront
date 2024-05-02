@@ -1,4 +1,4 @@
-export function MessengersConverter({value}) {
+export function MessengersConverter(value) {
     let result = 'EMAIL';
     switch (value) {
         case "mailImage":
@@ -16,5 +16,6 @@ export function MessengersConverter({value}) {
         default:
             break;
     }
+    console.log(value);
     return result;
 }

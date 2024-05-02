@@ -37,8 +37,15 @@ function App() {
 
     useEffect(() => {
         const lastPath = localStorage.getItem('lastPath');
+        const currentPath = location.pathname;
+        console.log(currentPath + location.search);
         if (lastPath ?? isAuthenticated) {
-            navigate(lastPath);
+            if (currentPath !== '/contact') {
+                console.log(currentPath);
+                navigate(lastPath);
+            } else {
+                navigate(currentPath + location.search);
+            }
         }
     }, []);
 

@@ -40,18 +40,18 @@ const SendingModeChoiceComponent = ({handleHoverMode}) => {
                         onHoverStart={() => setHoveredText("service")}
                         onHoverEnd={() => setHoveredText(null)}
                         whileHover={{ scale: 1.2 }}
-                        onClick={() => handleHoverMode("service")}
+                        onClick={() => handleHoverMode("cascade")}
                     >
-                        Почта<br/>пользователя
+                        Каскадная<br/>рассылка
                     </motion.div>
                     <motion.div
                         className="mail-text"
                         onHoverStart={() => setHoveredText("user")}
                         onHoverEnd={() => setHoveredText(null)}
                         whileHover={{ scale: 1.2 }}
-                        onClick={() => handleHoverMode("user")}
+                        onClick={() => handleHoverMode("default")}
                     >
-                        Почта<br/>сервиса
+                        Обычная<br/>рассылка
                     </motion.div>
                 </div>
             </div>

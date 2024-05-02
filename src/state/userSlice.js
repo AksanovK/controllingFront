@@ -5,7 +5,7 @@ import {AxiosInit} from "../utils/AxiosSettings";
 
 export const loginUser = createAsyncThunk('/login', async ({ email, password }, { rejectWithValue }) => {
     try {
-        const response = await axios.post('/auth', { email, password }, { withCredentials: true });
+        const response = await axios.post('/api/auth', { email, password }, { withCredentials: true });
         if (response.status === 200) {
             AxiosInit();
             return response.data;
@@ -21,7 +21,7 @@ export const logout = createAsyncThunk('/logout', async (_, { rejectWithValue })
     try {
         const refreshToken = localStorage.getItem('refreshToken');
         localStorage.clear();
-        await axios.get('/logout', {
+        await axios.get('/api/logout', {
             headers: {
                 'Refresh-Token': refreshToken
             }

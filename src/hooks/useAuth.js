@@ -10,7 +10,7 @@ export function useAuth() {
 
     const logout = async () => {
         try {
-            const response = await axios.post('/logout', {}, { withCredentials: true });
+            const response = await axios.post('/api/logout', {}, { withCredentials: true });
             if (response.status === 200) {
                 setIsAuthenticated(false);
             } else {

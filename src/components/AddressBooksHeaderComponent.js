@@ -28,7 +28,7 @@ const AddressBooksHeaderComponent = ({handleStart}) => {
         variants={variants}
         className={"addressBooksHeaderDiv"}
     >
-        <h2 className="bookHeaderTitle">Адрессные книги</h2>
+        <h2 className="bookHeaderTitle">Адресные книги</h2>
         <h5 className="bookHeaderSecondTitle">Здесь вы можете ознакомиться со списком существующих адресных книг,<br/>
             а также просмотреть контакты в каждой из них</h5>
         <button onClick={handleStart} className="booksStartButton" aria-label="Продолжить">
