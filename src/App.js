@@ -26,6 +26,9 @@ import AdminPanelPage from "./components/pages/AdminPanelPage";
 import SearchPage from "./components/pages/SearchPage";
 import ContactPage from "./components/pages/ContactPage";
 import InfoBox from "./components/InfoBox";
+import ContactsMgtPage from "./components/pages/ContactsMgtPage";
+import LoadingPage from "./components/pages/LoadingPage";
+import LoadingTestPage from "./components/pages/LoadingTestPage";
 
 function App() {
     const dispatch = useDispatch();
@@ -80,11 +83,13 @@ function App() {
             <Route path="/" element={<LayoutWithNav />}>
                 <Route index element={<MailerPage />} />
                 <Route path="/createMail" element={<CreateMailPage />} />
-                <Route path="/addressbooks" element={<AddressBooksPage />} />
+                <Route path="/addressbooks" element={<ContactsMgtPage />} />
                 <Route path="/account" element={<PersonalAccountPage />} />
                 <Route path="/admin" element={<AdminPanelPage />} />
                 <Route path="/search" element={<SearchPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/contacts" element={<ContactsMgtPage />} />
+                <Route path="/loading" element={<LoadingPage />} />
             </Route>
         </Routes>);
 }

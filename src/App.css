@@ -756,7 +756,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 }
 
 .searchProcessDiv {
-  margin: 80vh auto 30vh;
+  margin: 80vh auto 1vh;
   min-height: 65vh;
   width: 100%;
   justify-content: center;
@@ -1009,6 +1009,37 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   justify-content: center;
   padding-top: 20px;
   margin-bottom: 15vh;
+  z-index: 999;
+}
+
+.search-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 110vh;
+  z-index: 999;
+}
+
+.search-pagination button {
+  width: 5vh;
+  height: 5vh;
+  background-color: black;
+  border: none;
+  color: white;
+  font-family: 'Inter-Extra-Bold', serif;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 1vh;
+}
+
+.search-pagination button:hover {
+  background-color: #222;
+}
+
+.search-pagination button.active {
+  background-color: #444;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
 }
 
 .pagination button {
@@ -1524,12 +1555,7 @@ body {
     font-style: normal;
   }
 
-  .image {
-    -webkit-mask-image: url(./assets/images/ellipseStroke.svg);
-    -webkit-mask-position: center;
-    -webkit-mask-repeat: no-repeat;
-    height: 100%;
-  }
+
 
   .text-stroke {
 
@@ -1543,3 +1569,308 @@ body {
   }
 }
 
+.terminal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: black;
+  color: limegreen;
+  font-family: 'Courier New', Courier, monospace;
+  position: relative; /* Добавляем относительное позиционирование для дочерних элементов */
+}
+
+
+.terminal-header {
+  background-color: #222;
+  padding: 5px;
+  border-bottom: 1px solid #444;
+}
+
+.terminal-header span {
+  color: white;
+  font-family: Inter-Extra-Bold, serif;
+}
+
+.terminal-body {
+  flex: 1; /* Элемент занимает все доступное пространство */
+  overflow: auto; /* Скролл внутри при переполнении */
+}
+
+.terminal-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.terminal-list li {
+  margin-bottom: 5px;
+}
+
+.terminal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Распределение контента */
+  color: whitesmoke;
+  background-color: black;
+  flex: 1;
+  overflow: auto;
+  padding: 10px; /* Обеспечивает небольшой отступ вокруг содержимого */
+}
+
+.terminal-table {
+  width: 100%;
+  border-collapse: collapse; /* Удаление промежутков между ячейками */
+}
+
+button {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 4px;
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.5; /* Полупрозрачные кнопки при деактивации */
+  cursor: default;
+}
+
+button:hover:not(:disabled) {
+  background-color: #555; /* Светлее при наведении, если активна */
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative; /* Добавляем позиционирование относительно родителя */
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.search-input, .terminal-table, .pagination-controls {
+  margin: 8px 0;
+}
+
+.terminal-table th {
+  text-align: left;
+  border-bottom: 2px solid gray; /* Линия под заголовками */
+}
+
+.terminal-table th, .terminal-table td {
+  padding: 8px; /* Поле вокруг текста в ячейках */
+  white-space: nowrap; /* Текст без переносов */
+}
+
+.pagination-controls {
+  padding: 10px;
+  background: #333;
+  align-self: flex-end; /* Прижимаем блок к нижнему краю */
+}
+
+.terminal-line.selected {
+  background-color: rgba(175, 238, 238, 0.3);
+  color: black;
+}
+
+.terminal-line:hover {
+  background-color: rgba(245, 245, 245, 0.8);
+  color: black;
+  cursor: pointer;
+}
+
+.terminal-line td {
+  padding: 8px; /* Поле вокруг текста в ячейках */
+  border-top: 1px solid gray; /* Горизонтальная линия между строками */
+  white-space: nowrap; /* Текст без переносов */
+}
+
+.search-container {
+  display: flex;
+  gap: 10px;
+}
+
+.search-input {
+  flex-grow: 1;
+}
+
+.search-button {
+  cursor: pointer;
+}
+
+.console-contacts-root {
+  max-height: 80vh;
+}
+
+.action-button {
+  background-color: #222; /* Зеленый цвет */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 8px;
+  margin: 1vh;
+}
+
+.action-button:hover {
+  background-color: #45a049; /* Темнозеленый при наведении */
+}
+
+.windowTextArea {
+  background: #333;
+}
+
+
+.contactSectionBg {
+  background-color: #555;
+}
+
+.curve {
+  position: absolute;
+  height: 225px;
+  width: 100%;
+  bottom: 0;
+}
+
+.curve::before {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 100% 50%;
+  width: 55%;
+  height: 100%;
+  background-color: palevioletred;
+  transform: translate(85%, 60%);
+}
+
+.curve::after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 100% 50%;
+  width: 55%;
+  height: 100%;
+  background-color: cornflowerblue;
+  transform: translate(-4%, 40%);
+  z-index: -1;
+}
+
+.contactInfoImage {
+  height: 30px;
+}
+
+.downloadingIcon {
+  top: 265vh;
+  right: 5vh;
+}
+
+.terminal-search {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #222;
+  color: limegreen;
+  font-family: 'Courier New', Courier, monospace;
+  position: relative;
+}
+
+.contacts-add-book-but {
+  background-color: #222;
+}
+
+.contacts-delete-book-but {
+  background-color: #222;
+}
+
+.selected-contacts-style {
+  font-size: 5vh;
+  font-family: 'Inter-Extra-Bold', Courier, monospace;
+}
+
+.addressBooksContainer {
+  max-width: 600px;
+  margin-bottom: 2vh;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 24px;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.addressBooksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.addressBookItem {
+  background-color: #2c2c2c;
+  color: #ffffff;
+  border: 1px solid #3c3c3c;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.addressBookItem.selected {
+  background-color: #3c3c3c;
+  transform: scale(1.02);
+}
+
+.addressBookItem:hover {
+  background-color: #3c3c3c;
+}
+
+.bookDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bookName {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.icon {
+  margin-right: 10px;
+  color: #ffffff;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.edit, .delete {
+  color: #9e9e9e;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.edit:hover, .delete:hover {
+  color: #ffffff;
+}

@@ -96,16 +96,16 @@ const SearchProcessAnimComponent = ({ handleSearch }) => {
                 </div>
             )}
             <div className="relative">
-                {showTable && <SearchTableComponent contacts={contacts} handleDetails={handleDetails} />}
-                {showTable && (
-                    <div className="absolute top-0 right-0 mt-8 mr-8 flex justify-center items-center">
-                        {isDownloading ? (
-                            <HiOutlineCheckCircle size={42} className="mr-16 text-green-500" />
-                        ) : (
-                            <HiOutlineDownload size={42} onClick={() => handleDownload()} className="mr-16 cursor-pointer" />
-                        )}
-                    </div>
-                )}
+                {/*{showTable && <SearchTableComponent contacts={contacts} handleDetails={handleDetails} />}*/}
+                {/*{showTable && (*/}
+                {/*    <div className="absolute top-0 right-0 mt-8 mr-8 flex justify-center items-center">*/}
+                {/*        {isDownloading ? (*/}
+                {/*            <HiOutlineCheckCircle size={42} className="mr-16 text-green-500" />*/}
+                {/*        ) : (*/}
+                {/*            <HiOutlineDownload size={42} onClick={() => handleDownload()} className="mr-16 cursor-pointer" />*/}
+                {/*        )}*/}
+                {/*    </div>*/}
+                {/*)}*/}
             </div>
 
             <AcceptWindow open={open} onClose={() => setOpen(false)}>

@@ -4,12 +4,7 @@ import {useInView} from "react-intersection-observer";
 import TableItemComponent from "./TableItemComponent";
 import SearchTableItemComponent from "./SearchTableItemComponent";
 
-const SearchTableComponent = ({ contacts, handleDetails }) => {
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;
-    const pageCount = Math.ceil(contacts.length / itemsPerPage);
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+const SearchTableComponent = ({ contacts, handleDetails, currentPage, indexOfFirstItem, indexOfLastItem }) => {
     const controls = useAnimation();
     const [ref, inView] = useInView();
     const currentItems = contacts.slice(indexOfFirstItem, indexOfLastItem);
@@ -27,41 +22,6 @@ const SearchTableComponent = ({ contacts, handleDetails }) => {
         hidden: { opacity: 0, scale: 0.95 }
     };
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-    const getPageNumbers = () => {
-        const pages = [];
-        let leftSide = currentPage - 1;
-        let rightSide = currentPage + 1;
-
-        if (currentPage > 1) {
-            pages.push(
-                <button key="firstPage" onClick={() => paginate(1)}>
-                    &laquo;
-                </button>
-            );
-        }
-
-        for (let i = leftSide; i <= rightSide; i++) {
-            if (i > 0 && i <= pageCount) {
-                pages.push(
-                    <button key={i} onClick={() => paginate(i)} className={currentPage === i ? "active" : ""}>
-                        {i}
-                    </button>
-                );
-            }
-        }
-
-        pages.push(
-            <button key="lastPage" onClick={() => paginate(pageCount)}>
-                &raquo;
-            </button>
-        );
-
-        return pages;
-    };
-
-
 
 
     return (
@@ -71,11 +31,11 @@ const SearchTableComponent = ({ contacts, handleDetails }) => {
             initial="hidden"
             animate={controls}
             variants={variants}
-            style={{ textAlign: 'center', width: '100%', margin: '2vh auto', marginTop: '40vh', height: '15%' }}
+            style={{ textAlign: 'center', width: '100%', height: '100%'}}
         >
-            <div className={"flex justify-center items-center h-3/12"}>
-                <table id={"addressBookTableDiv"} className={"shadow-2xl font-[Poppins] border-2 border-black w-10/12 overflow-hidden inter-font"}>
-                    <thead className={"text-white rounded-xl bg-black"}>
+            <div style={{height: '100%'}} className={"justify-center items-center rounded-xl"}>
+                <table style={{height: '100%'}} id={"addressBookTableDiv"} className={"shadow-2xl font-[Poppins] border-1 border-black w-full overflow-hidden inter-font rounded-2xl"}>
+                    <thead className={"text-white rounded-2xl bg-black"}>
                     <tr className="rounded-2xl">
                         <th className={"py-3 bg-black inter-font"}>№</th>
                         <th className={"py-3 bg-black inter-font"}>Имя и фамилия</th>
@@ -93,9 +53,6 @@ const SearchTableComponent = ({ contacts, handleDetails }) => {
                         />
                     ))}
                 </table>
-            </div>
-            <div className="pagination flex justify-center">
-                {getPageNumbers()}
             </div>
         </motion.div>
     );

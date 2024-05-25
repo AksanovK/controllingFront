@@ -76,44 +76,49 @@ const ContactPageComponent = ({contact}) => {
 
     const formattedDate = contact.birthday ? format(parseISO(contact.birthday), 'dd.MM.yyyy') : "-";
 
-    return ( <>
+    return (
         <div className={"relative bg-[#444]"}>
-            <div ref={bg1}
-                 className={"bg bg-[#444] absolute h-screen w-screen z-[-1]"}
-            ></div>
-                <section className={"bg-white"}>
-                    <div ref={img_container} className="perspective img-container flex items-center justify-center h-screen w-screen">
-                        <img ref={img} className="image" src={bg} alt=""/>
-                        <div className={"text-black absolute flex flex-col items-center justify-center"}>
-                            <img ref={text1} src={contact.gender === 'MALE' ? maleIcon : femaleIcon} alt="Gender Icon"
-                            className={"contactPageAvatar"}/>
-                            <h1 ref={text2} className={"text-[90px] text-stroke raleway-1"}>
-                                {contact.firstName} {" "} {" "}
-                                {contact.lastName}
-                            </h1>
-                        </div>
-                    </div>
-
-                    <div ref={container} className={"container py-12 flex flex-wrap items-center justify-around"}>
-                        <ContactInfoCardComponent gender={contact.gender} formattedDate={formattedDate} additionalInfo={contact.additionalInfo}/>
-                    </div>
-                    <div ref={container2} className={"container py-12 flex flex-wrap items-center justify-around"}>
-                        <ContactInfoContactsComponent contact={contact} />
-                        {/*<div className="contactAddress">*/}
-                        {/*    <h3>Контактная информация</h3>*/}
-                        {/*    <ul>*/}
-                        {/*        {contact.contactInfo.map((info, index) => (*/}
-                        {/*            <li key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '2vh', marginTop: '5vh' }}>*/}
-                        {/*                <img src={convertImage(info.type)} alt={info.type} style={{ width: '12vh', height: '12vh', marginRight: '10px' }} />*/}
-                        {/*                <span>{info.type === 'VK' ? 'https://vk.com/' + info.value : info.value}</span>*/}
-                        {/*            </li>*/}
-                        {/*        ))}*/}
-                        {/*    </ul>*/}
-                        {/*</div>*/}
+            <div ref={bg1} className={"bg bg-[#444] absolute h-screen w-screen z-[-1]"}></div>
+            <section className={"bg-white w-full max-w-full"}>
+                {/* Секция с изображением */}
+                <section
+                    ref={img_container}
+                    className="perspective img-container flex items-center justify-center h-screen w-full max-w-full mb-96"
+                >
+                    <img ref={img} className="image w-full max-w-full" src={bg} alt="Background" />
+                    <div className={"text-black absolute flex flex-col items-center justify-center"}>
+                        <img
+                            ref={text1}
+                            src={contact.gender === "MALE" ? maleIcon : femaleIcon}
+                            alt="Gender Icon"
+                            className={"contactPageAvatar"}
+                        />
+                        <h1 ref={text2} className={"text-[90px] text-stroke raleway-1"}>
+                            {contact.firstName} {contact.lastName}
+                        </h1>
                     </div>
                 </section>
+                <section
+                    ref={container}
+                    className={
+                        "container py-12 flex flex-wrap items-center justify-around w-full max-w-full h-screen max-h-screen"
+                    }
+                >
+                    <ContactInfoCardComponent
+                        gender={contact.gender}
+                        formattedDate={formattedDate}
+                        additionalInfo={contact.additionalInfo}
+                    />
+                </section>
+                <section
+                    ref={container2}
+                    className={"container py-12 flex flex-wrap items-center justify-around w-full max-w-full h-full max-h-full"}
+                >
+                    <ContactInfoContactsComponent contact={contact} />
+                </section>
+            </section>
         </div>
-    </>);
+    );
 }
 
 export default ContactPageComponent;

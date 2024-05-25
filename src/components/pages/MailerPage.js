@@ -71,7 +71,7 @@ function MailerPage() {
 
     const handleNextClick = useCallback((variants) => {
         setSelectedMessengers(variants);
-        scrollToElementWithId("addressBooksSearchMotion")
+        scrollToElementWithId("addressBooksSearchMotion");
     }, []);
 
     const handleSetBook = useCallback((book) => {
