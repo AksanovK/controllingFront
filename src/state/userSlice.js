@@ -13,6 +13,7 @@ export const loginUser = createAsyncThunk('/login', async ({ email, password }, 
             return rejectWithValue('Ошибка авторизации');
         }
     } catch (error) {
+        console.log(error);
         return rejectWithValue('Неправильный логин или пароль');
     }
 });

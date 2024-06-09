@@ -1874,3 +1874,27 @@ button:hover:not(:disabled) {
 .edit:hover, .delete:hover {
   color: #ffffff;
 }
+
+.editUser {
+  color: #9e9e9e;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.editUser:hover {
+  color: #000000;
+}
+
+.createUserList {
+  width: 55vh;
+}
+
+.emailShareIcon {
+  width: 12vh;
+  height: 12vh;
+}
+
+.bg-light-gray {
+  background-color: rgba(211, 211, 211, 0.5);
+}

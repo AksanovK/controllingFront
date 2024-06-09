@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {Suspense, useCallback, useEffect, useState} from 'react';
 import axios from "axios";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
@@ -7,8 +7,9 @@ import AddressBookSearchComponent from "../AddressBookSearchComponent";
 import SendingModeChoiceComponent from "../SendingModeChoiceComponent";
 import InstructionsReadyComponent from "../InstructionsReadyComponent";
 import InfoBox from "../InfoBox";
-import MailerHeaderTitleComponent from "../MailerHeaderTitleComponent";
+//import MailerHeaderTitleComponent from "../MailerHeaderTitleComponent";
 import CommunicationCascadeVariantComponent from "../CommunicationCascadeVariantComponent";
+const MailerHeaderTitleComponent = React.lazy(() => import("../MailerHeaderTitleComponent"));
 
 function MailerPage() {
     const [addressBooks , setAddressBooks] = useState([]);
@@ -96,6 +97,15 @@ function MailerPage() {
             </svg>
         </>
     ) : (
+        <Suspense
+            fallback={
+                <>
+                    <svg className="spinner" viewBox="0 0 50 50">
+                        <circle className="path" cx="25" cy="25" r="20" fill="none"></circle>
+                    </svg>
+                </>
+            }
+        >
         <div className="mailerBackground">
             <div className="vectorPosition">
                 <MailerHeaderTitleComponent handleSearch={() => scrollToElementWithId("SendingModeChoice")}/>
@@ -116,6 +126,7 @@ function MailerPage() {
                 {error && <InfoBox type="info" message={error} onClose={() => setError('')} />}
             </div>
         </div>
+        </Suspense>
     );
 }
 

@@ -48,7 +48,6 @@ function LoadingTestPage({ setIsLoadingFinished, isLoadingFinished, selectedCrit
     };
 
     const handleProcessStep = (msgData) => {
-        console.log(`Текущий шаг: ${currentStep.current}, статус сообщения: ${msgData.status}`);
 
         if ((currentStep.current === 'init' || currentStep.current === 'parsing') && msgData.status === 'completed') {
             clearTimeout(timeoutId.current);
@@ -60,7 +59,6 @@ function LoadingTestPage({ setIsLoadingFinished, isLoadingFinished, selectedCrit
             });
             setProcessStep('ranking');
             currentStep.current = 'ranking';
-            console.log('Инициализация и парсинг завершены, переход к ранжированию');
         } else if (currentStep.current === 'ranking' && msgData.status === 'completed') {
             clearTimeout(timeoutId.current);
             setStepCompleted(true);
@@ -71,21 +69,17 @@ function LoadingTestPage({ setIsLoadingFinished, isLoadingFinished, selectedCrit
             });
             setProcessStep('searching');
             currentStep.current = 'searching';
-            console.log('Ранжирование завершено, переход к поиску');
         } else if (currentStep.current === 'searching' && msgData.status === 'Completed') {
             clearTimeout(timeoutId.current);
             setContacts(msgData.result);
-            console.log("Итоговые результаты: ", msgData.result);
             setCounter(100);
             setTimeout(() => {
                 setIsLoadingFinished(true);
             }, 4000);
             reveal();
             stompClient.current.deactivate();
-            console.log("Процесс завершен, соединение закрыто");
         } else if (msgData.status === 'error') {
             setError(`Ошибка: ${msgData.message}`);
-            console.log(`Ошибка получена: ${msgData.message}`);
         }
     };
 
@@ -102,7 +96,6 @@ function LoadingTestPage({ setIsLoadingFinished, isLoadingFinished, selectedCrit
         stompClient.current.onConnect = () => {
             stompClient.current.subscribe('/topic/searching', (message) => {
                 const msgData = JSON.parse(message.body);
-                console.log("Получено сообщение: ", msgData);
                 handleProcessStep(msgData);
             });
 
@@ -112,7 +105,6 @@ function LoadingTestPage({ setIsLoadingFinished, isLoadingFinished, selectedCrit
                     destination: "/app/loading/startParsing",
                     body: JSON.stringify({ subject: selectedSubject, type: selectedCriteria })
                 });
-                console.log('Сообщение отправлено: ' + JSON.stringify({ subject: selectedSubject, type: selectedCriteria }));
             }
         };
 
@@ -122,13 +114,11 @@ function LoadingTestPage({ setIsLoadingFinished, isLoadingFinished, selectedCrit
             if (stompClient.current.connected) {
                 clearTimeout(timeoutId.current);
                 stompClient.current.deactivate();
-                console.log("Соединение закрыто");
             }
         };
     }, [selectedCriteria, selectedSubject]);
 
     useEffect(() => {
-        console.log(`Состояние processStep изменилось: ${processStep}`);
         currentStep.current = processStep;
     }, [processStep]);
 
@@ -179,7 +169,7 @@ function LoadingTestPage({ setIsLoadingFinished, isLoadingFinished, selectedCrit
 
     const reveal = () => {
         const tl = gsap.timeline({
-            onComplete: () => console.log("Анимация завершена"),
+            onComplete: () => console.log(""),
         });
         tl.to(".follow", { width: "100%", ease: Expo.easeInOut, duration: 1.2, delay: 0.7 })
             .to(".hide", { opacity: 0, duration: 0.3 })

@@ -24,7 +24,6 @@ const NavigationBar = () => {
                 <ul className="nav-menu-center">
                     <li><NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link-active' : 'nav-link'}>Рассылка</NavLink></li>
                     <li><NavLink to="/search" className={({ isActive }) => isActive ? 'nav-link-active' : 'nav-link'}>Поиск</NavLink></li>
-                    {/*<li><NavLink to="/account" className={({ isActive }) => isActive ? 'nav-link-active' : 'nav-link'}>Личный кабинет</NavLink></li>*/}
                     <li><NavLink to="/addressbooks" className={({ isActive }) => isActive ? 'nav-link-active' : 'nav-link'}>Адресные книги</NavLink></li>
                     <li><NavLink to="/admin" className={({ isActive }) => isActive ? 'nav-link-active' : 'nav-link'}>Админ-панель</NavLink></li>
                 </ul>

@@ -27,7 +27,7 @@ export default function SearchFiltersComponent({
     }, [controls, inView]);
 
     const handleCheckboxChange = (sectionId, optionValue) => {
-        if (isDisabled) return; // Блокировка изменения фильтров при активном поиске
+        if (isDisabled) return;
 
         if (sectionId === 'color') {
             setSelectedTargetGroup(optionValue === selectedTargetGroup ? null : optionValue);
@@ -57,7 +57,6 @@ export default function SearchFiltersComponent({
             name: 'Критерии',
             options: [
                 { value: 'olympics', label: 'Олимпиады', checked: false },
-                { value: 'scientific', label: 'Научные конференции и исследования', checked: false },
             ],
         },
         {

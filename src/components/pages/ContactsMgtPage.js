@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Book, BookOpen } from "react-feather";
-import { FaTrash, FaEdit } from "react-icons/fa";
+import { FaTrash, FaEdit, FaExclamationCircle } from "react-icons/fa";
 import ContactsConsoleComponent from "../ContactsConsoleComponent";
 import SelectedContactsComponent from "../SelectedContactsComponent";
 import AddressBooksHeaderComponent from "../AddressBooksHeaderComponent";
@@ -17,6 +17,7 @@ function ContactsMgtPage() {
     const [file, setFile] = useState(null);
     const [newBookName, setNewBookName] = useState("");
     const [selectedBookForRename, setSelectedBookForRename] = useState({});
+    const [showInfo, setShowInfo] = useState(false);
 
     useEffect(() => {
         (async function () {
@@ -155,7 +156,7 @@ function ContactsMgtPage() {
     };
 
     const renameBook = (bookId) => {
-       // setSelectedBook(books.find(book => book.id === bookId));
+        // setSelectedBook(books.find(book => book.id === bookId));
         setSelectedBookForRename(books.find(book => book.id === bookId));
         setShowRename(true);
     };
@@ -199,7 +200,15 @@ function ContactsMgtPage() {
             contactsMotionDiv.scrollIntoView({ behavior: 'smooth',
                 block: 'center' });
         }
-    }
+    };
+
+    const handleInfoClick = () => {
+        setShowInfo(true);
+    };
+
+    const handleInfoClose = () => {
+        setShowInfo(false);
+    };
 
     return (
         <>
@@ -216,6 +225,11 @@ function ContactsMgtPage() {
                                 <button onClick={addBook} className="contacts-add-book-but text-white inter-font px-4 py-2 rounded">
                                     Добавить
                                 </button>
+                                <FaExclamationCircle
+                                    onClick={handleInfoClick}
+                                    className="text-black ml-6 cursor-pointer"
+                                    size={24}
+                                />
                             </div>
                             <div className="addressBooksContainer">
                                 <ol className="addressBooksList">
@@ -289,6 +303,23 @@ function ContactsMgtPage() {
                                 style={{ width: '100%' }}
                         >
                             Отмена
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {showInfo && (
+                <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
+                    <div className="bg-white p-5 rounded shadow-lg inter-font">
+                        <p className="mb-1 text-center">
+                            Каждый контакт должен подписаться <br /> на рассылку для получения сообщений,<br />
+                            подписка доступна по следующей ссылке:<br />
+                        </p>
+                        <div className="flex justify-center mb-3">
+                            <a href="/share" className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Подписаться</a>
+                        </div>
+                        <button className="btn btn-secondary mt-3 w-full" onClick={handleInfoClose}>
+                            Закрыть
                         </button>
                     </div>
                 </div>

@@ -10,9 +10,26 @@ module.exports = {
       },
       width: {
         'screen': '100vw'
+      },
+      scrollbar: {
+        thin: {
+          width: '2px',
+          height: '2px',
+        },
+        thumb: {
+          DEFAULT: '#6b7280',
+          hover: '#4b5563',
+        },
+        track: {
+          DEFAULT: '#e5e7eb',
+        },
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 }
+
+
 

@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {
-    BrowserRouter as Router,
     Route,
     Routes,
     Outlet,
     Navigate,
     useNavigate,
     useLocation,
-    BrowserRouter
 } from 'react-router-dom';
 import NavigationBar from './components/NavigationBar';
 import LoginPage from './components/pages/LoginPage';
@@ -20,15 +18,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {setCredentials} from "./state/userSlice";
 import {AxiosInit} from "./utils/AxiosSettings";
 import CreateMailPage from "./components/pages/CreateMailPage";
-import AddressBooksPage from "./components/pages/AddressBooksPage";
 import PersonalAccountPage from "./components/pages/PersonalAccountPage";
 import AdminPanelPage from "./components/pages/AdminPanelPage";
 import SearchPage from "./components/pages/SearchPage";
 import ContactPage from "./components/pages/ContactPage";
-import InfoBox from "./components/InfoBox";
 import ContactsMgtPage from "./components/pages/ContactsMgtPage";
 import LoadingPage from "./components/pages/LoadingPage";
-import LoadingTestPage from "./components/pages/LoadingTestPage";
+import SharePage from "./components/pages/SharePage";
 
 function App() {
     const dispatch = useDispatch();
@@ -43,8 +39,7 @@ function App() {
         const currentPath = location.pathname;
         console.log(currentPath + location.search);
         if (lastPath ?? isAuthenticated) {
-            if (currentPath !== '/contact') {
-                console.log(currentPath);
+            if (currentPath !== '/contact' && currentPath !== '/share' && currentPath !== '/login') {
                 navigate(lastPath);
             } else {
                 navigate(currentPath + location.search);
@@ -53,7 +48,10 @@ function App() {
     }, []);
 
     useEffect(() => {
-        localStorage.setItem('lastPath', location.pathname);
+        const currentPath = location.pathname;
+        if (currentPath !== '/contact' && currentPath !== '/share' && currentPath !== '/login') {
+            localStorage.setItem('lastPath', location.pathname);
+        }
     }, [location]);
 
     useEffect(() => {
@@ -80,6 +78,7 @@ function App() {
     return (
         <Routes>
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/share" element={<SharePage />} />
             <Route path="/" element={<LayoutWithNav />}>
                 <Route index element={<MailerPage />} />
                 <Route path="/createMail" element={<CreateMailPage />} />
